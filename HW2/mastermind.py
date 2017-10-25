@@ -16,7 +16,7 @@ def guess_code(response,prev_guess,codes_list):
     if response == 0: #first guess
         return [["Red", "Blue", "Blue"],codes_list]
     new_codes_list = remove_codes(response,prev_guess,codes_list)
-    print("len(new_codes_list)",len(new_codes_list))
+    #return (minimax(new_codes_list),new_codes_list)
     return [new_codes_list[0],new_codes_list]
 
 def minimax(codes_list):
@@ -67,6 +67,8 @@ def remove_codes(response, prev_guess, codes_list):
         if response != calculate_response(prev_guess,list_code):
             new_codes_list.remove(code)
     return new_codes_list
+
+
 
 def submit_code(guessed_code,users_code):
     print("Your secret code: ", users_code, "\n") #so player doesn't forget
