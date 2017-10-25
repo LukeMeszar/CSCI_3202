@@ -12,10 +12,12 @@ def get_users_code():
     return(code)
 
 def guess_code(response,prev_guess,codes_list):
+#    print("response,prev_guess,codes_list",response,prev_guess,codes_list)
     if response == 0: #first guess
-        return ["Red", "Blue", "Blue"]
+        return [["Red", "Blue", "Blue"],codes_list]
     new_codes_list = remove_codes(response,prev_guess,codes_list)
-    return [minimax(codes_list),new_codes_list]
+    print("len(new_codes_list)",len(new_codes_list))
+    return [new_codes_list[0],new_codes_list]
 
 def minimax(codes_list):
     best_move_list = [] #{H(g)}
@@ -45,6 +47,7 @@ def calculate_response(guess,code):
     correct_col_and_pos = 0
     correct_col = 0
     colors_seen_correct = []
+#    print("guess,code",guess,code)
     for i in range(len(guess)):
         if guess[i] == code[i]:
             correct_col_and_pos += 1
@@ -57,6 +60,7 @@ def calculate_response(guess,code):
     return [correct_col_and_pos, correct_col]
 
 def remove_codes(response, prev_guess, codes_list):
+    print("prev_guess",prev_guess)
     new_codes_list = codes_list[:]
     for code in codes_list:
         list_code = list(code)
@@ -77,16 +81,16 @@ def submit_code(guessed_code,users_code):
 def game_loop(users_code,codes_list):
     won = False
     moves_remaining = 5
-    code_to_guess = guess_code(0,-1,codes_list)
+    code_to_guess, new_codes_list = guess_code(0,-1,codes_list)
     response = submit_code(code_to_guess, users_code)
     if response == [3,0]:
         print("Game won")
         won = True
     new_codes_list = codes_list[:]
     while not won and moves_remaining != 0:
-        code_to_guess = guess_code(response,code_to_guess,new_codes_list)
-        new_codes_list = code_to_guess[1][:]
-        response = submit_code(code_to_guess[0],users_code)
+        code_to_guess,new_codes_list = guess_code(response,code_to_guess,new_codes_list)
+
+        response = submit_code(code_to_guess,users_code)
         if response == [3,0]:
             print("Game won")
             won = True
@@ -96,3 +100,4 @@ def game_loop(users_code,codes_list):
 
 if __name__ == "__main__":
     game_loop(get_users_code(),generate_codes())
+    #guess_code([1,0],["Red", "Blue", "Blue"],generate_codes())
