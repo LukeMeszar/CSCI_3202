@@ -125,4 +125,54 @@
 	No valid moves for Red. 
 	
 	Game over. Blue Wins!
+	\subsection{(15 points) Alpha-Beta Pruning}
+	\begin{enumerate}[(a)]
+		\item The overall value to MAX is 3. 
+		\item The number of nodes that still need to be evaluated is 49.
+		\item The number of nodes that still need to be evaluated is 53.
+		\item The number of nodes that still need to be evaluated is 49.
+	\end{enumerate}
+	\setcounter{section}{3}
+	\subsection{(20 points) 4x4 Sudoku}
+	\begin{enumerate}
+		\item \begin{tabular}{|c|c|c|c|}
+			\hline
+			1 & 2 & 3 & 4 \\\hline
+			3 & 4 & 1 & 2 \\\hline
+			2 & 1 & 4 & 3 \\\hline
+			4 & 3 & 2 & 1 \\\hline
+		\end{tabular}
+		\item 
+		\leavevmode
+		\begin{enumerate}
+			\item In CNF, we get the following expression:
+			\begin{multline*}
+			(\neg S143 \lor \neg S243)\land (\neg S143 \lor \neg S343)\land (\neg S143 \lor \neg S443)\land (\neg S243 \lor \neg S343)\land \\ (\neg S243 \lor \neg S443)\land (\neg S343 \lor \neg S443)\land (S143 \lor S243 \lor S343 \lor S443) 
+			\end{multline*}
+			All the expressions of the form $(\neg Sx43 \lor \neg Sy43)$ are saying that a three cannot be in two squares at the same time. The expression
+			\[ (S143 \lor S243 \lor S343 \lor S443) \]
+			is saying that the three has to be in one of the four squares. 
+			\item To prove that a 3 has to be in the third row of the fourth column, we will use the following premises:
+			\begin{multline*}
+			(\neg S143 \lor \neg S243)\land (\neg S143 \lor \neg S343)\land (\neg S143 \lor \neg S443)\land (\neg S243 \lor \neg S343)\land \\ (\neg S243 \lor \neg S443)\land (\neg S343 \lor \neg S443)\land (S143 \lor S243 \lor S343 \lor S443) 
+			\end{multline*}
+			and
+			\begin{equation*}
+			(S144)\land(S242)\land(S441)\land(S111)\land(S312)\land(S423)\land(\neg S143)\land(\neg S243)\land(\neg S443)
+			\end{equation*}
+			This second premise is just the initial placement of numbers along with the fact that a 3 cannot lie in any of the squares that already have numbers in them in the fourth row. Finally, for our contraction, we will assume the premise:
+			\begin{equation*}
+			\neg S343.
+			\end{equation*}
+			Then, using the following resolutions, we derive a contradiction:
+			\begin{align*}
+			&\frac{(S143 \lor S243 \lor S343 \lor S443),(\neg S343)}{(S143 \lor S243 \lor S443)} \\
+			&\frac{(S143 \lor S243 \lor S443),(\neg S143)}{(S243 \lor S443)} \\
+			&\frac{(S243 \lor S443),(\neg S243)}{(S443)} \\
+			&\frac{(S443),(\neg S443)}{\{\}}
+			\end{align*}
+		\end{enumerate}
+	Thus, there must be a 3 in the third row of the fourth column.
+	\end{enumerate}
+	
 \end{document}
