@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{blindtext}
+\usepackage{systeme}
+\usepackage{relsize}
+\usepackage{enumerate}
+\usepackage{commath}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{mathtools}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz-cd}
+\usetikzlibrary{automata,positioning}
+%\usepackage{hyperref}
+%\hypersetup{
+% colorlinks=false,% hyperlinks will be black
+%linkbordercolor=black,% hyperlink borders will be red
+%pdfborderstyle={/S/U/W 0.25}% border style will be underline of width 1pt
+%}
+\usepackage{chngcntr}
+\usepackage{MnSymbol}
+\usepackage{tikz}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{cleveref}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+	backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+	basicstyle=\ttfamily\footnotesize,        % the size of the fonts that are used for the code
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	breaklines=true,                 % sets automatic line breaking
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	deletekeywords={...},            % if you want to delete keywords from the given language
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	frame=single,	                   % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue},       % keyword style
+	language=Octave,                 % the language of the code
+	morekeywords={*,...},            % if you want to add more keywords to the set
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve},     % string literal style
+	tabsize=2,	                   % sets default tabsize to 2 spaces
+	%title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\title{CSCI 3202 Artificial Intelligence Homework 2}
+\author{Luke Meszar}
+\date{October 27, 2017}
+\setcounter{section}{2}
+\begin{document}
+	\maketitle
+	\subsection{(35 Points) Sim Game}
+	\lstinputlisting[language=Python]{simWriteup.py}
+	The above code is only the important parts of the code I wrote so it will not run as is. The main approach I took in this problem was using alpha-beta pruning to find the best move for the computer. The heuristic I used was the length of legal moves remaining after a  certain number of moves between the computer and player. I choose this heuristic since having the most possible valid moves means that the computer can survive longer. Another possible heuristic is choosing the move that minimizes the number of moves the opponent has. To make this search faster, I started with a small search depth at the beginning of the game and then increased the depth as the game went on and the number of possible moves went down. Also, to improve the efficiency, I didn't pre-generate a game tree. For every possible move at a given level, I simulated playing that move and then continued recursing with alpha-beta. This, effectively allows a DFS approach which is more efficient since branches that can be pruned never have to be fully computed. 
+	
+	\textbf{Sample Game}
+	
+	Enter 0 to play as Red, 1 to play as Blue: 0
+	
+	Red Move: H,D
+	
+	Blue Move: E,B
+	
+	Red Move: D,B 
+	
+	Blue Move: F,B
+	
+	Red Move: E,F
+	
+	Blue Move: D,E
+	
+	Red Move: F,D
+	
+	Blue Move: G,A 
+	
+	Red Move: F,G
+	
+	Blue Move: C,H
+	
+	Red Move: F,C
+	
+	Blue Move: E,A
+	
+	Red Move: G,H
+	
+	Blue Move: C,B
+	
+	Red Move: H,E
+	
+	Blue Move: F,E
+	
+	Red Move: B,G
+	
+	Blue Move: G,C
+	
+	Red Move: F,A
+	
+	Blue Move: D,C
+	
+	Red Move: B,A
+	
+	Blue Move:  A,H
+	
+	No valid moves for Red. 
+	
+	Game over. Blue Wins!
+\end{document}
