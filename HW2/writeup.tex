@@ -132,8 +132,8 @@
 		\item The number of nodes that still need to be evaluated is 53.
 		\item The number of nodes that still need to be evaluated is 49.
 	\end{enumerate}
-	\setcounter{section}{3}
-	\subsection{(20 points) 4x4 Sudoku}
+	\setcounter{section}{2}
+	\section{(20 points) 4x4 Sudoku}
 	\begin{enumerate}
 		\item \begin{tabular}{|c|c|c|c|}
 			\hline
@@ -172,7 +172,14 @@
 			&\frac{(S443),(\neg S443)}{\{\}}
 			\end{align*}
 		\end{enumerate}
-	Thus, there must be a 3 in the third row of the fourth column.
+		Thus, there must be a 3 in the third row of the fourth column.
 	\end{enumerate}
+	\setcounter{section}{3}
+	\section{(30 Points) Mastermind}
+	\lstinputlisting[language=Python]{masterWriteup.py}
+	Again, the code above is only the important parts so it will not run as is. The main part strategy this program uses is removing potential guess that cannot possibly be right based on the previous guess and response. Each time the computer receives a response to a guess, it loops through the remaining guesses to determine which ones to keep. For each guess remaining, we see if the previous guess would have gotten the same response if that guess were the code. If it wouldn't have gotten the same response, then we can remove this guess from our remaining guess list. The logic behind this is as follows. One of the remaining guesses is the correct code and it gave a certain response $x$ to the previous guess. Then, only the set of guesses that would also give the same response could possibly be correct codes. This drastically cuts down on the numbers of guesses to make and is what allows this problem to become tractable in a small number of moves. Once all the incorrect guesses have been removed, the game just chooses the first one in the remaining list as its next guess. This strategy works well for the small game size since the number of states decreases quickly to a manageable number. 
 	
+	This strategy would not work for a game with 30 colors and 25 positions. The number of possible codes is 
+	\[30^{25} = 8.47 \cdot 10^{36}.\]
+	If you could store each code in a single byte, then it would take $8.47 \cdot 10^12$ yottabytes to store all of the possible codes. This is entirely unfeasible with current hardware. 
 \end{document}

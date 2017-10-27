@@ -16,6 +16,7 @@ def guess_code(response,prev_guess,codes_list):
     if response == 0: #first guess
         return [["Red", "Blue", "Blue"],codes_list]
     new_codes_list = remove_codes(response,prev_guess,codes_list)
+    print(len(new_codes_list))
     #return (minimax(new_codes_list),new_codes_list)
     return [new_codes_list[0],new_codes_list]
 
