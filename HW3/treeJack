@@ -1,0 +1,32 @@
+digraph Tree {
+node [shape=box, style="filled", color="black"] ;
+0 [label=<Will fund &le; 0.5<br/>gini = 0.5<br/>samples = 20<br/>value = [10, 10]<br/>class = No>, fillcolor="#e5813900"] ;
+1 [label=<gini = 0.0<br/>samples = 4<br/>value = [4, 0]<br/>class = No>, fillcolor="#e58139ff"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label=<Interesting Research &le; 0.5<br/>gini = 0.469<br/>samples = 16<br/>value = [6, 10]<br/>class = Yes>, fillcolor="#399de566"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+3 [label=<Low Cost of Living &le; 0.5<br/>gini = 0.469<br/>samples = 8<br/>value = [5, 3]<br/>class = No>, fillcolor="#e5813966"] ;
+2 -> 3 ;
+4 [label=<Mountains &le; 0.5<br/>gini = 0.32<br/>samples = 5<br/>value = [4, 1]<br/>class = No>, fillcolor="#e58139bf"] ;
+3 -> 4 ;
+5 [label=<gini = 0.0<br/>samples = 3<br/>value = [3, 0]<br/>class = No>, fillcolor="#e58139ff"] ;
+4 -> 5 ;
+6 [label=<Connections &le; 0.5<br/>gini = 0.5<br/>samples = 2<br/>value = [1, 1]<br/>class = No>, fillcolor="#e5813900"] ;
+4 -> 6 ;
+7 [label=<gini = 0.0<br/>samples = 1<br/>value = [1, 0]<br/>class = No>, fillcolor="#e58139ff"] ;
+6 -> 7 ;
+8 [label=<gini = 0.0<br/>samples = 1<br/>value = [0, 1]<br/>class = Yes>, fillcolor="#399de5ff"] ;
+6 -> 8 ;
+9 [label=<Highly Ranked &le; 0.5<br/>gini = 0.444<br/>samples = 3<br/>value = [1, 2]<br/>class = Yes>, fillcolor="#399de57f"] ;
+3 -> 9 ;
+10 [label=<gini = 0.0<br/>samples = 1<br/>value = [1, 0]<br/>class = No>, fillcolor="#e58139ff"] ;
+9 -> 10 ;
+11 [label=<gini = 0.0<br/>samples = 2<br/>value = [0, 2]<br/>class = Yes>, fillcolor="#399de5ff"] ;
+9 -> 11 ;
+12 [label=<Highly Ranked &le; 0.5<br/>gini = 0.219<br/>samples = 8<br/>value = [1, 7]<br/>class = Yes>, fillcolor="#399de5db"] ;
+2 -> 12 ;
+13 [label=<gini = 0.0<br/>samples = 1<br/>value = [1, 0]<br/>class = No>, fillcolor="#e58139ff"] ;
+12 -> 13 ;
+14 [label=<gini = 0.0<br/>samples = 7<br/>value = [0, 7]<br/>class = Yes>, fillcolor="#399de5ff"] ;
+12 -> 14 ;
+}

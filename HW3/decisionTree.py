@@ -6,9 +6,9 @@ import random
 data = [[1,1,1,0,0,0],[1,1,1,1,0,0],[1,1,1,0,1,0],[1,1,1,0,0,1],[1,1,1,1,1,0],[1,1,1,1,0,1],[1,1,1,0,1,1],[1,1,1,1,1,1],[1,1,0,0,1,1],[1,1,0,1,1,1],[1,1,0,1,0,0],[1,1,0,1,0,1],[0,1,0,0,0,0],[0,1,1,0,0,0],[0,0,1,0,1,0],[1,0,1,1,1,1],[1,0,0,1,1,1],[0,1,0,1,1,1],[1,1,0,0,1,0],[1,1,0,0,0,1],[1,1,0,1,1,0],[1,1,0,0,0,0],[1,1,0,0,0,1],[0,1,0,0,1,1],[0,0,1,1,0,1]]
 
 labels = [1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
-
-random.shuffle(data)
-random.shuffle(labels)
+combined_data = list(zip(data,labels))
+random.shuffle(combined_data)
+data, labels = zip(*combined_data)
 
 data_lables = ["Will fund", "Highly Ranked", "Interesting Research", "Low Cost of Living", "Mountains", "Connections"]
 target_names = ["No", "Yes"]
@@ -25,10 +25,11 @@ print(iris.feature_names)
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(training_data, training_lables)
 print(clf.score(test_data,test_lables))
+print(test_data,test_lables)
 #
 dot_data = tree.export_graphviz(clf, out_file=None,
                          feature_names=data_lables,
                          class_names=target_names,
                          filled=True,special_characters=True)
 graph = graphviz.Source(dot_data)
-graph.render("tree")
+graph.render("treeJack")
